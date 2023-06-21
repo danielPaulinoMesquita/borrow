@@ -1,3 +1,15 @@
+# Borrow Platform
+
+The borrow system is a system that his goal is get easier actions of borrow. \
+The project started and the following image is the first appearance.
+
+![alt text](src/assets/screens/menu-initial.png)
+
+Initially objective is practicing the coding in React, Nest and Spring.\
+Eventually can be one project to companies and sold in future.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
