@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Box,
     Editable,
     EditablePreview,
     EditableTextarea,
-    FormControl,
+    FormControl, FormErrorMessage, FormHelperText,
     FormLabel,
     Grid,
     GridItem,
@@ -16,7 +16,7 @@ import {
     NumberIncrementStepper,
     NumberInput,
     NumberInputField,
-    NumberInputStepper
+    NumberInputStepper, Select, Text, Textarea
 } from "@chakra-ui/react";
 import * as PropTypes from "prop-types";
 
@@ -26,74 +26,96 @@ function CheckIcon(props) {
 
 CheckIcon.propTypes = {color: PropTypes.string};
 export const Products = () => {
-    const defaultText = 'Este produto tem o objetivo de cortar folhas dos jardins. O Produto é novo, ' +
-        'comprado recentente, produto de marca conhecido pela qualidade';
+    const [name, setName] = useState('');
+    const isError = name === '';
+    console.log('teste',isError)
 
     return (
         <Box>
             <Heading>Produtos</Heading>
-            <FormControl>
-                <Grid templateColumns='repeat(4, 1fr)'
+
+            <Grid templateColumns='repeat(4, 1fr)'
                       templateRows='repeat(3, 1fr)'
                       h='600px'
                       gap='7'>
 
                     <GridItem colSpan='2' w='80%'>
-                        <Box h='20'>
-                            <FormLabel htmlFor="name">Name: </FormLabel>
-                            <Input id="name" type='text' />
+
+                        <Box>
+                            <FormControl isRequired isInvalid={isError}>
+                                <FormLabel htmlFor="name">Nome: </FormLabel>
+                                <Input id="name" type='text' value={name} onChange={(n) => setName(n.target.value)}/>
+                                {isError &&
+                                    <FormErrorMessage>Nome está vazio</FormErrorMessage>
+                                }
+                            </FormControl>
                         </Box>
 
                         <Box h='20'>
-                            <FormLabel htmlFor="email">Valor: </FormLabel>
-                            <Input id="email" type='email' />
+                            <FormControl isRequired>
+                                <FormLabel htmlFor="email">Valor: </FormLabel>
+                                <Input id="email" type='email' />
+                            </FormControl>
+                        </Box>
+
+                        <Box h='20'>
+                            <FormControl isRequired>
+                                <FormLabel htmlFor="type">Tipo: </FormLabel>
+                                <Select placeholder='Select ...'>
+                                    <option value='option1'>Construção</option>
+                                    <option value='option2'>Esporte</option>
+                                    <option value='option3'>Animais</option>
+                                    <option value='option4'>Carros</option>
+                                    <option value='option5'>Utensílios</option>
+                                </Select>
+                            </FormControl>
                         </Box>
                     </GridItem>
 
                     <GridItem colSpan='2' w='80%'>
                         <Box h='20'>
-                            <FormLabel htmlFor="daysToBorrow">Dias: </FormLabel>
-                            <NumberInput defaultValue={15} min={10} max={20}>
-                                <NumberInputField />
-                                <NumberInputStepper>
-                                    <NumberIncrementStepper />
-                                    <NumberDecrementStepper />
-                                </NumberInputStepper>
-                            </NumberInput>
+                            <FormControl isRequired>
+                                <FormLabel htmlFor="daysToBorrow">Dias: </FormLabel>
+                                <NumberInput defaultValue={15} min={10} max={20}>
+                                    <NumberInputField />
+                                    <NumberInputStepper>
+                                        <NumberIncrementStepper />
+                                        <NumberDecrementStepper />
+                                    </NumberInputStepper>
+                                </NumberInput>
+                            </FormControl>
                         </Box>
 
                         <Box h='20'>
-                            <FormLabel htmlFor="tel">Valor: </FormLabel>
-                            <InputGroup>
-                                <InputLeftElement
-                                    pointerEvents='none'
-                                    color='gray.300'
-                                    fontSize='1.2em'
-                                    children='$'
-                                />
-                                <Input placeholder='20.00' />
-                                <InputRightElement>
-                                    <CheckIcon color='green.500' />
-                                </InputRightElement>
-                            </InputGroup>
+                            <FormControl isRequired>
+                                <FormLabel htmlFor="tel">Valor: </FormLabel>
+                                <InputGroup>
+                                    <InputLeftElement
+                                        pointerEvents='none'
+                                        color='gray.300'
+                                        fontSize='1.2em'
+                                        children='$'
+                                    />
+                                    <Input placeholder='20.00' />
+                                    <InputRightElement>
+                                        <CheckIcon color='green.500' />
+                                    </InputRightElement>
+                                </InputGroup>
+                            </FormControl>
                         </Box>
                     </GridItem>
 
                     <GridItem w='80%' colSpan='4'>
-                        <Box>
-                            <FormLabel htmlFor="description">Digite um texto</FormLabel>
-                            <Editable border='1px'
-                                      borderColor='gray.200'
-                                      borderRadius='var(--chakra-radii-md)'
-                                      defaultValue={defaultText}
-                                      height='20'>
-                                <EditablePreview />
-                                <EditableTextarea height='20'/>
-                            </Editable>
-                        </Box>
+                        <FormControl isRequired>
+                            <FormLabel as='legend'>
+                                Entre com o texto
+                            </FormLabel>
+                            <Box>
+                                <Textarea placeholder='Here is a sample placeholder' />
+                            </Box>
+                        </FormControl>
                     </GridItem>
                 </Grid>
-            </FormControl>
 
         </Box>
     )

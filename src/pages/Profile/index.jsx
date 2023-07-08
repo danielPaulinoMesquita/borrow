@@ -8,7 +8,7 @@ import {
     FormLabel,
     Grid,
     GridItem, Heading,
-    Input, Select
+    Input, Select, Textarea
 } from '@chakra-ui/react'
 
 export const Profile = () => {
@@ -68,14 +68,7 @@ export const Profile = () => {
                 <GridItem w='80%' colSpan='4'>
                     <Box>
                         <FormLabel htmlFor="description">Digite um texto</FormLabel>
-                        <Editable border='1px'
-                                  borderColor='gray.200'
-                                  borderRadius='var(--chakra-radii-md)'
-                                  defaultValue='Digite a descrição'
-                                  height='20'>
-                            <EditablePreview />
-                            <EditableTextarea height='20'/>
-                        </Editable>
+                        <Textarea placeholder='Here is a sample placeholder' />
                     </Box>
                 </GridItem>
             </Grid>
