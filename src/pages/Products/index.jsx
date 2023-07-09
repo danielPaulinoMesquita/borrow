@@ -1,39 +1,65 @@
 import React, {useState} from 'react';
 import {
+    Alert,
+    AlertIcon,
     Box,
-    Editable,
-    EditablePreview,
-    EditableTextarea,
-    FormControl, FormErrorMessage, FormHelperText,
+    Button,
+    FormControl,
+    FormErrorMessage,
     FormLabel,
     Grid,
     GridItem,
     Heading,
     Input,
     InputGroup,
-    InputLeftElement, InputRightElement,
+    InputLeftElement,
+    InputRightElement,
     NumberDecrementStepper,
     NumberIncrementStepper,
     NumberInput,
     NumberInputField,
-    NumberInputStepper, Select, Text, Textarea
+    NumberInputStepper,
+    Select,
+    Textarea
 } from "@chakra-ui/react";
-import * as PropTypes from "prop-types";
+import {BsFillCheckCircleFill} from "react-icons/bs";
 
-function CheckIcon(props) {
-    return null;
-}
-
-CheckIcon.propTypes = {color: PropTypes.string};
 export const Products = () => {
     const [name, setName] = useState('');
-    const isError = name === '';
-    console.log('teste',isError)
+    const [value, setValue] = useState('');
+    const [type, setType] = useState('');
+    const [day, setDays] = useState('');
+    const [description, setDescription] = useState('');
+
+    const [hasError, setHasError] = useState(false);
+
+    const isErrorName = name === '';
+    const isErrorDay = day === '';
+    const isErrorValue = value === '';
+    const isErrorType = type === '';
+    const isErrorDescription = description === '';
+
+    const handleSubmit = () => {
+        console.log('values: ',{
+            name,value,type,day,description
+        })
+        if (isErrorValue || isErrorType){
+            setHasError(true)
+        } else {
+            setHasError(false)
+        }
+
+    }
 
     return (
         <Box>
+            { hasError &&
+                <Alert status='error'>
+                    <AlertIcon />
+                    Formulário com problemas
+                </Alert>
+            }
             <Heading>Produtos</Heading>
-
             <Grid templateColumns='repeat(4, 1fr)'
                       templateRows='repeat(3, 1fr)'
                       h='600px'
@@ -42,52 +68,51 @@ export const Products = () => {
                     <GridItem colSpan='2' w='80%'>
 
                         <Box>
-                            <FormControl isRequired isInvalid={isError}>
+                            <FormControl isRequired isInvalid={isErrorName}>
                                 <FormLabel htmlFor="name">Nome: </FormLabel>
-                                <Input id="name" type='text' value={name} onChange={(n) => setName(n.target.value)}/>
-                                {isError &&
+                                <Input id="name" type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+                                {isErrorName &&
                                     <FormErrorMessage>Nome está vazio</FormErrorMessage>
                                 }
                             </FormControl>
                         </Box>
 
-                        <Box h='20'>
-                            <FormControl isRequired>
-                                <FormLabel htmlFor="email">Valor: </FormLabel>
-                                <Input id="email" type='email' />
-                            </FormControl>
-                        </Box>
-
-                        <Box h='20'>
-                            <FormControl isRequired>
+                        <Box>
+                            <FormControl isRequired isInvalid={isErrorType}>
                                 <FormLabel htmlFor="type">Tipo: </FormLabel>
-                                <Select placeholder='Select ...'>
-                                    <option value='option1'>Construção</option>
-                                    <option value='option2'>Esporte</option>
-                                    <option value='option3'>Animais</option>
-                                    <option value='option4'>Carros</option>
-                                    <option value='option5'>Utensílios</option>
+                                <Select placeholder='Select ...' onChange={(e)=> setType(e.target.value)}>
+                                    <option value='Construção'>Construção</option>
+                                    <option value='Esporte'>Esporte</option>
+                                    <option value='Animais'>Animais</option>
+                                    <option value='Carros'>Carros</option>
+                                    <option value='Utensílios'>Utensílios</option>
                                 </Select>
+                                {isErrorType &&
+                                    <FormErrorMessage>Selecione um Tipo</FormErrorMessage>
+                                }
                             </FormControl>
                         </Box>
                     </GridItem>
 
                     <GridItem colSpan='2' w='80%'>
-                        <Box h='20'>
-                            <FormControl isRequired>
+                        <Box>
+                            <FormControl isRequired isInvalid={isErrorDay}>
                                 <FormLabel htmlFor="daysToBorrow">Dias: </FormLabel>
-                                <NumberInput defaultValue={15} min={10} max={20}>
+                                <NumberInput defaultValue={15} min={10} max={20} onChange={(e)=> setDays(e)}>
                                     <NumberInputField />
                                     <NumberInputStepper>
                                         <NumberIncrementStepper />
                                         <NumberDecrementStepper />
                                     </NumberInputStepper>
                                 </NumberInput>
+                                {isErrorDay &&
+                                    <FormErrorMessage>Por favor, coloque a quantidade de dias </FormErrorMessage>
+                                }
                             </FormControl>
                         </Box>
 
-                        <Box h='20'>
-                            <FormControl isRequired>
+                        <Box>
+                            <FormControl isRequired isInvalid={isErrorValue}>
                                 <FormLabel htmlFor="tel">Valor: </FormLabel>
                                 <InputGroup>
                                     <InputLeftElement
@@ -96,27 +121,40 @@ export const Products = () => {
                                         fontSize='1.2em'
                                         children='$'
                                     />
-                                    <Input placeholder='20.00' />
+                                    <Input placeholder='20.00' id="value" onChange={(e)=> setValue(e.target.value)}/>
                                     <InputRightElement>
-                                        <CheckIcon color='green.500' />
+                                        <BsFillCheckCircleFill style={{color: 'green'}}/>
                                     </InputRightElement>
                                 </InputGroup>
+                                {isErrorValue &&
+                                    <FormErrorMessage>Valor incorreto</FormErrorMessage>
+                                }
                             </FormControl>
                         </Box>
                     </GridItem>
 
                     <GridItem w='80%' colSpan='4'>
-                        <FormControl isRequired>
+                        <FormControl isRequired isInvalid={isErrorDescription}>
                             <FormLabel as='legend'>
                                 Entre com o texto
                             </FormLabel>
                             <Box>
-                                <Textarea placeholder='Here is a sample placeholder' />
+                                <Textarea placeholder='Here is a sample placeholder' onChange={e => setDescription(e.target.value)}/>
                             </Box>
+                            {isErrorValue &&
+                                <FormErrorMessage>Insira uma descrição para oseu produto</FormErrorMessage>
+                            }
                         </FormControl>
                     </GridItem>
                 </Grid>
-
+            <Button
+                onClick={()=> handleSubmit()}
+                mt={4}
+                colorScheme='teal'
+                type='submit'
+            >
+                Submit
+            </Button>
         </Box>
     )
 }
