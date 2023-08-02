@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
     Alert,
     AlertIcon,
@@ -25,30 +25,31 @@ import {
 import {BsFillCheckCircleFill} from "react-icons/bs";
 
 export const Products = () => {
-    const [name, setName] = useState('');
-    const [value, setValue] = useState('');
-    const [type, setType] = useState('');
-    const [day, setDays] = useState('');
-    const [description, setDescription] = useState('');
+    const [submit, setSubmit] = useState(false);
 
-    const [hasError, setHasError] = useState(false);
+    let nameRef = useRef(null);
+    let valueRef = useRef(null);
+    let typeRef = useRef(null);
+    let dayRef = useRef(null);
+    let descriptionRef = useRef(null);
 
-    const isErrorName = name === '';
-    const isErrorDay = day === '';
-    const isErrorValue = value === '';
-    const isErrorType = type === '';
-    const isErrorDescription = description === '';
+    const isErrorName = nameRef.current?.value === '';
+    const isErrorDay = dayRef.current?.value === '';
+    const isErrorValue = valueRef.current?.value === '';
+    const isErrorType = typeRef.current?.value === '';
+    const isErrorDescription = descriptionRef.current?.value ==='';
+    const hasError = isErrorName || isErrorDay || isErrorValue || isErrorValue|| isErrorType || isErrorDescription ;
 
     const handleSubmit = () => {
-        console.log('values: ',{
-            name,value,type,day,description
-        })
-        if (isErrorValue || isErrorType){
-            setHasError(true)
-        } else {
-            setHasError(false)
-        }
+        setSubmit(!submit);
 
+        console.log('values: ',{
+            nameREF: nameRef.current.value,
+            valueREF: valueRef.current.value,
+            typeREF: typeRef.current.value,
+            dayREF: dayRef.current.value,
+            descriptionREF: descriptionRef.current.value
+        })
     }
 
     return (
@@ -70,7 +71,7 @@ export const Products = () => {
                         <Box>
                             <FormControl isRequired isInvalid={isErrorName}>
                                 <FormLabel htmlFor="name">Nome: </FormLabel>
-                                <Input id="name" type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+                                <Input id="name" type='text' ref={nameRef}/>
                                 {isErrorName &&
                                     <FormErrorMessage>Nome está vazio</FormErrorMessage>
                                 }
@@ -80,7 +81,7 @@ export const Products = () => {
                         <Box>
                             <FormControl isRequired isInvalid={isErrorType}>
                                 <FormLabel htmlFor="type">Tipo: </FormLabel>
-                                <Select placeholder='Select ...' onChange={(e)=> setType(e.target.value)}>
+                                <Select placeholder='Select ...' ref={typeRef}>
                                     <option value='Construção'>Construção</option>
                                     <option value='Esporte'>Esporte</option>
                                     <option value='Animais'>Animais</option>
@@ -98,8 +99,8 @@ export const Products = () => {
                         <Box>
                             <FormControl isRequired isInvalid={isErrorDay}>
                                 <FormLabel htmlFor="daysToBorrow">Dias: </FormLabel>
-                                <NumberInput defaultValue={15} min={10} max={20} onChange={(e)=> setDays(e)}>
-                                    <NumberInputField />
+                                <NumberInput defaultValue={15} min={10} max={20}>
+                                    <NumberInputField ref={dayRef}/>
                                     <NumberInputStepper>
                                         <NumberIncrementStepper />
                                         <NumberDecrementStepper />
@@ -121,7 +122,9 @@ export const Products = () => {
                                         fontSize='1.2em'
                                         children='$'
                                     />
-                                    <Input placeholder='20.00' id="value" onChange={(e)=> setValue(e.target.value)}/>
+                                    <Input placeholder='20.00' id="value"
+                                           ref={valueRef}
+                                    />
                                     <InputRightElement>
                                         <BsFillCheckCircleFill style={{color: 'green'}}/>
                                     </InputRightElement>
@@ -139,7 +142,7 @@ export const Products = () => {
                                 Entre com o texto
                             </FormLabel>
                             <Box>
-                                <Textarea placeholder='Here is a sample placeholder' onChange={e => setDescription(e.target.value)}/>
+                                <Textarea placeholder='Here is a sample placeholder' ref={descriptionRef}/>
                             </Box>
                             {isErrorValue &&
                                 <FormErrorMessage>Insira uma descrição para oseu produto</FormErrorMessage>
