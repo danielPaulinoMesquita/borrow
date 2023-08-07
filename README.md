@@ -1,9 +1,24 @@
 # Borrow Platform
 
-The borrow system is a system that his goal is get easier actions of borrow. \
-The project started and the following image is the first appearance.
+The borrow system is a web application that his goal is get easier actions of borrow. \
+The project started and the following images are the current appearance.
 
-![alt text](src/assets/screens/menu-initial.png)
+### DashBoard
+This page the user will see all companies and products that can be borrowed `This page will have a lot changes yet`
+![alt text](src/assets/screens/dashBoard.png)
+
+### Products
+This page will register products that in the future are can be to borrow
+![alt text](src/assets/screens/products.png)
+
+### Profile
+This page will serve to professionals register their information `This page will have a few modifications yet`.
+![alt text](src/assets/screens/profile.png)
+
+### Login
+This page will serve to authenticate, `This page is building yet`.
+![alt text](src/assets/screens/login.png)
+
 
 Initially objective is practicing the coding in React, Nest and Spring.\
 Eventually can be one project to companies and sold in future.
