@@ -1,6 +1,7 @@
 import React from 'react';
 import {Heading, HStack, Image, Text} from "@chakra-ui/react";
 import {Card} from "./styles";
+import ConstructImage from '../../assets/screens/construct-example-company.jpg'
 
 const ComponentCard = ({objects, loading}) => {
     if(loading) {
@@ -17,8 +18,8 @@ const ComponentCard = ({objects, loading}) => {
                                     boxSize='100%'
                                     borderRadius='base'
                                     objectFit='cover'
-                                    src='https://bit.ly/dan-abramov'
-                                    alt='Dan Abramov'
+                                    src={ConstructImage}
+                                    alt='image'
                                 />
 
                                 <Heading fontSize='sm'>{object.title}</Heading>

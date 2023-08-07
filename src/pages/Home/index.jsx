@@ -169,7 +169,7 @@ export const Home = () => {
             <Box>
                 <Box>
                     <Heading fontSize='lg'>Empresas</Heading>
-                    <Box p='9'>
+                    <Box p='5'>
                         <Pagination
                             current={current}
                             totalPage={companies.length}

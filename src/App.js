@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Home} from "./pages/Home";
 import {Main} from "./pages/Main";
 import {Profile} from "./pages/Profile";
+import Login from "./pages/Login";
 
 function NotFound (){
     return (
@@ -28,7 +29,11 @@ function App() {
                     <Header isActive={isActive}/>
                     <Main changeWidth={sideOpen}>
                         <Routes>
+                            {/*!--PUBLIC PATHS --*/}
                             <Route path="/" element={<Home/>}/>
+                            <Route path="/login" element={<Login/>}/>
+
+                            {/*!--PROTECT PATHS --*/}
                             <Route path="/home" element={<Home/>}/>
                             <Route path="/dashboard" element={<Home/>}/>
                             <Route path="/products" element={<Products/>}/>
