@@ -1,7 +1,7 @@
 # Borrow Platform
 
 The borrow system is a web application that his goal is get easier actions of borrow. \
-The project started and the following images are the current appearance.
+The project started and the following images are the current appearance (not finished yet).
 
 ### DashBoard
 This page the user will see all companies and products that can be borrowed `This page will have a lot changes yet`

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title":"Alicates e CIA",
+    "desc":"Nessa loja você pode pegar Alicates de corte, alicates de bico etc"
+  },
+  {
+    "id": 2,
+    "title":"Martelos e CIA",
+    "desc":"Nessa loja você pode pegar Martelos de corte, ótimo desconto"
+  },
+  {
+    "id": 3,
+    "title":"Betoneiras e CIA",
+    "desc":"Nessa loja você pode pegar Betoneiras de corte, alicates de bico etc"
+  },
+  {
+    "id": 4,
+    "title":"Carros e CIA",
+    "desc":"Nessa loja você pode pegar Carros de corte, carros 0 e semi-novos"
+  },
+  {
+    "id": 5,
+    "title":"Motos em Geral",
+    "desc":"Motos e bicicletas você pode encontrar aqui"
+  },
+  {
+    "id": 6,
+    "title":"Motos em Geral",
+    "desc":"Motos e bicicletas você pode encontrar aqui"
+  },
+  {
+    "id": 7,
+    "title":"Motos em Geral",
+    "desc":"Motos e bicicletas você pode encontrar aqui"
+  }
+]

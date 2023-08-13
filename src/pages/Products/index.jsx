@@ -42,20 +42,12 @@ export const Products = () => {
 
     const handleSubmit = () => {
         setSubmit(!submit);
-
-        console.log('values: ',{
-            nameREF: nameRef.current.value,
-            valueREF: valueRef.current.value,
-            typeREF: typeRef.current.value,
-            dayREF: dayRef.current.value,
-            descriptionREF: descriptionRef.current.value
-        })
     }
 
     return (
         <Box>
             { hasError &&
-                <Alert status='error'>
+                <Alert status='error' style={{borderRadius: 20, maxWidth: '90%'}}>
                     <AlertIcon />
                     Formulário com problemas
                 </Alert>
