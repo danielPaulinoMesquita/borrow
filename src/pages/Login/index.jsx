@@ -1,14 +1,16 @@
 import {useRef, useState} from "react";
 import {
     Box,
-    Button,
+    Button, CardBody, CardFooter, CardHeader,
     FormControl,
     FormErrorMessage,
     FormHelperText,
-    FormLabel, Grid, GridItem,
+    FormLabel,
+    Grid,
+    GridItem,
+    Heading,
     Input,
-    Spinner,
-    Stack
+    Spinner, Text, Card
 } from "@chakra-ui/react";
 
 
@@ -38,15 +40,31 @@ const Login = () => {
     }
 
     return (
-        <Grid templateColumns='repeat(2, 1fr)' h='100%' gap={6}>
-            <GridItem w='100%' h='100%'>
-                I will put some text of welcome to users.
+        <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+            <GridItem>
+                <Card align='center'
+                      h='100%'
+                      bgGradient='linear(to-r, darkred, #FA8072, MistyRose)'>
+                    <CardHeader>
+                        <Heading size='md' color='white'>Borrow Me / Me Empresta aí! </Heading>
+                    </CardHeader>
+                    <CardBody>
+                        <Text color='white' size='lg'>
+                            Join the BorrowMe community today and experience the convenience, affordability, and sustainability of collaborative borrowing.
+                            Unleash the power of shared resources, reduce waste, and unlock new possibilities with the BorrowMe system.
+                            Borrow smart, borrow hassle-free, and embrace a world of endless opportunities at your fingertips.
+
+                            Welcome to BorrowMe – where borrowing becomes effortless!
+                        </Text>
+                    </CardBody>
+                    <CardFooter>
+                        <Button colorScheme='red' style={{backgroundColor: 'darkred'}}>View here</Button>
+                    </CardFooter>
+                </Card>
             </GridItem>
-            <GridItem w='100%' h='100%'>
+            <GridItem>
                 <Box alignItems='center'
-                     justifyContent='center'
-                     width='100%'
-                h='100%'>
+                     justifyContent='center' h='100%'>
                     { loader &&
                         <Box style={
                             {display: "flex",
@@ -84,12 +102,16 @@ const Login = () => {
                         )}
                     </FormControl>
                     <Box>
-                        <Button width='40%' border='2px' variant='solid' style={{backgroundColor: 'darkred', color: 'white'}} onClick={()=>login()}>
-                            Login
-                        </Button>
-                        <Button width='40%' border='2px' variant='outline' style={{backgroundColor: 'white', color: 'darkred', border: 'solid', borderColor: 'darkred'}} >
-                            Cadastrar
-                        </Button>
+                        <Box p='2'>
+                            <Button width='80%' variant='solid' style={{backgroundColor: 'darkred', color: 'white'}} onClick={()=>login()}>
+                                Login
+                            </Button>
+                        </Box>
+                        <Box p='2'>
+                            <Button width='80%' border='2px' variant='outline' style={{backgroundColor: 'white', color: 'darkred', border: 'solid', borderColor: 'darkred'}} >
+                                Cadastrar
+                            </Button>
+                        </Box>
                     </Box>
                 </Box>
             </GridItem>

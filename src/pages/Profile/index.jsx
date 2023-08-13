@@ -135,8 +135,9 @@ export const Profile = () => {
             <Button
                 onClick={()=> handleSubmit()}
                 mt={4}
-                colorScheme='teal'
                 type='submit'
+                colorScheme='red'
+                style={{backgroundColor: 'darkred'}}
             >
                 Submit
             </Button>
