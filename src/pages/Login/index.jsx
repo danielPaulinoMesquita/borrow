@@ -12,6 +12,8 @@ import {
     Input,
     Spinner, Text, Card
 } from "@chakra-ui/react";
+import {useAuth} from "../../contexts/AuthProvider";
+import {useNavigate} from "react-router-dom";
 
 
 const Login = () => {
@@ -20,6 +22,9 @@ const Login = () => {
 
     const [submit, setSubmit] = useState(false);
     const [loader, setLoader] = useState(false);
+
+    const auth = useAuth();
+    const navigate = useNavigate();
 
     const isErrorUser = userRef.current?.value === ''
     const isErrorPassword =  passwordRef.current?.value === ''
@@ -33,10 +38,21 @@ const Login = () => {
 
         console.log('RESULTADO DO AWAIT: ',time)
 
+        // todo I will do a call to service and get the ROLES
+
+
         setLoader(false)
 
         setSubmit(!submit);
         console.log('REFS: ', {'user': userRef.current?.value, 'password': passwordRef.current?.value})
+
+        // Checking if it has some inout empty
+        if (userRef.current?.value && passwordRef.current?.value){
+            auth.login(userRef.current?.value)
+            navigate('/');
+        }
+
+
     }
 
     return (
@@ -44,9 +60,9 @@ const Login = () => {
             <GridItem>
                 <Card align='center'
                       h='100%'
-                      bgGradient='linear(to-r, darkred, #FA8072, MistyRose)'>
+                      bgGradient='linear(darkred, #FA8072, MistyRose)'>
                     <CardHeader>
-                        <Heading size='md' color='white'>Borrow Me / Me Empresta aí! </Heading>
+                        <Heading size='lg' color='white'>Borrow Me / Me Empresta aí! </Heading>
                     </CardHeader>
                     <CardBody>
                         <Text color='white' size='lg'>

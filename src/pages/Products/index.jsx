@@ -24,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 import {BsFillCheckCircleFill} from "react-icons/bs";
 
-export const Products = () => {
+function Products () {
     const [submit, setSubmit] = useState(false);
 
     let nameRef = useRef(null);
@@ -155,3 +155,4 @@ export const Products = () => {
     )
 }
 
+export default React.memo(Products);

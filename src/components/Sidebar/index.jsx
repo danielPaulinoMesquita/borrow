@@ -1,14 +1,18 @@
 import React from 'react'
 import {Container, Content} from './styles'
-import {FaChartBar, FaEnvelope, FaHome, FaTimes, FaUserAlt} from 'react-icons/fa'
+import {FaAddressCard, FaBoxes, FaChartBar, FaHome, FaTimes, FaUserAlt} from 'react-icons/fa'
 import {Link} from 'react-router-dom';
 import SidebarItem from '../SidebarItem'
+import {useAuth} from "../../contexts/AuthProvider";
 
 const Sidebar = ({ active }) => {
 
     const closeSidebar = () => {
         active(false)
     }
+
+    const auth = useAuth();
+    console.log(auth.userAuth)
 
     return (
         <Container sidebar={active}>
@@ -21,11 +25,16 @@ const Sidebar = ({ active }) => {
                     <SidebarItem Icon={FaChartBar} Text="Dashboard" />
                 </Link>
                 <Link to="products">
-                    <SidebarItem Icon={FaUserAlt} Text="Products" />
+                    <SidebarItem Icon={FaBoxes} Text="Products" />
                 </Link>
                 <Link to="profile">
-                    <SidebarItem Icon={FaEnvelope} Text="Profile" />
+                    <SidebarItem Icon={FaAddressCard} Text="Profile" />
                 </Link>
+                {!!auth.userAuth &&
+                    <Link to="login">
+                        <SidebarItem Icon={FaUserAlt} Text="Login" />
+                    </Link>
+                }
             </Content>
         </Container>
     )

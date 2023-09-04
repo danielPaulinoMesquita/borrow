@@ -1,13 +1,14 @@
 import './App.css';
 import Header from "./pages/Header";
 import {ChakraProvider} from "@chakra-ui/react";
-import {useState} from "react";
-import {Products} from "./pages/Products";
+import {useCallback, useState} from "react";
+import Products from "./pages/Products";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Home} from "./pages/Home";
 import {Main} from "./pages/Main";
 import {Profile} from "./pages/Profile";
 import Login from "./pages/Login";
+import {AuthProvider} from "./contexts/AuthProvider";
 
 function NotFound (){
     return (
@@ -18,31 +19,35 @@ function NotFound (){
 function App() {
     const [sideOpen, setSideOpen] = useState(false);
 
-    const isActive = (isOpen) => {
+    const isActive = useCallback((isOpen) => {
+        console.log('aqui')
         setSideOpen(isOpen);
-    }
+    },[])
+
 
     return (
         <ChakraProvider>
-            <div className="App">
-                <BrowserRouter>
-                    <Header isActive={isActive}/>
-                    <Main changeWidth={sideOpen}>
-                        <Routes>
-                            {/*!--PUBLIC PATHS --*/}
-                            <Route path="/" element={<Home/>}/>
-                            <Route path="/login" element={<Login/>}/>
+            <AuthProvider>
+                <div className="App">
+                    <BrowserRouter>
+                        <Header isActive={isActive}/>
+                        <Main changeWidth={sideOpen}>
+                            <Routes>
+                                {/*!--PUBLIC PATHS --*/}
+                                <Route path="/" element={<Home/>}/>
+                                <Route path="/login" element={<Login/>}/>
 
-                            {/*!--PROTECT PATHS --*/}
-                            <Route path="/home" element={<Home/>}/>
-                            <Route path="/dashboard" element={<Home/>}/>
-                            <Route path="/products" element={<Products/>}/>
-                            <Route path="/profile" element={<Profile/>}/>
-                            <Route path="*" element={<NotFound />} />
-                        </Routes>
-                    </Main>
-                </BrowserRouter>
-            </div>
+                                {/*!--PROTECT PATHS --*/}
+                                <Route path="/home" element={<Home/>}/>
+                                <Route path="/dashboard" element={<Home/>}/>
+                                <Route path="/products" element={<Products/>}/>
+                                <Route path="/profile" element={<Profile/>}/>
+                                <Route path="*" element={<NotFound />} />
+                            </Routes>
+                        </Main>
+                    </BrowserRouter>
+                </div>
+            </AuthProvider>
         </ChakraProvider>
     );
 }
