@@ -85,6 +85,29 @@ export const Profile = () => {
                             Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
                             coffee of a lot of kind of coffees.
                         </Text>
+
+ <Text py='2'>
+                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
+                            coffee of a lot of kind of coffees.
+                        </Text>
+
+ <Text py='2'>
+                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
+                            coffee of a lot of kind of coffees.
+                        </Text>
+
+ <Text py='2'>
+                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
+                            coffee of a lot of kind of coffees.
+                        </Text>
+
+ <Text py='2'>
+                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
+                            coffee of a lot of kind of coffees.
+                        </Text>
+
+
+
                     </CardBody>
 
                     <CardFooter>

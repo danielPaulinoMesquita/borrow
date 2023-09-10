@@ -9,6 +9,7 @@ import {Main} from "./pages/Main";
 import {Profile} from "./pages/Profile";
 import Login from "./pages/Login";
 import {AuthProvider} from "./contexts/AuthProvider";
+import {RequireAuth} from "./contexts/RequireAuth";
 
 function NotFound (){
     return (
@@ -41,7 +42,11 @@ function App() {
                                 <Route path="/home" element={<Home/>}/>
                                 <Route path="/dashboard" element={<Home/>}/>
                                 <Route path="/products" element={<Products/>}/>
-                                <Route path="/profile" element={<Profile/>}/>
+                                <Route path="/profile" element={
+                                    <RequireAuth>
+                                        <Profile/>
+                                    </RequireAuth>
+                                }/>
                                 <Route path="*" element={<NotFound />} />
                             </Routes>
                         </Main>
