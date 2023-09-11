@@ -13,7 +13,7 @@ import {
     Spinner, Text, Card
 } from "@chakra-ui/react";
 import {useAuth} from "../../contexts/AuthProvider";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 
 const Login = () => {
@@ -25,6 +25,9 @@ const Login = () => {
 
     const auth = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const redirectPath = location.state?.path || '/';
 
     const isErrorUser = userRef.current?.value === ''
     const isErrorPassword =  passwordRef.current?.value === ''
@@ -49,10 +52,8 @@ const Login = () => {
         // Checking if it has some inout empty
         if (userRef.current?.value && passwordRef.current?.value){
             auth.login(userRef.current?.value)
-            navigate('/');
+            navigate(redirectPath, {replace: true});
         }
-
-
     }
 
     return (

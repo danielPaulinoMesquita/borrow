@@ -3,7 +3,7 @@ import {
     Alert,
     AlertIcon,
     Box,
-    Button,
+    Button, ButtonGroup,
     Card,
     CardBody,
     CardFooter,
@@ -14,7 +14,7 @@ import {
     GridItem,
     Heading,
     Image,
-    Input,
+    Input, List, ListIcon, ListItem,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -22,12 +22,13 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
-    Select,
+    Select, SimpleGrid,
     Stack,
     Text,
     Textarea,
     useDisclosure
 } from '@chakra-ui/react'
+import {BsFillTelephoneFill} from 'react-icons/bs';
 import {useAuth} from "../../contexts/AuthProvider";
 import {useNavigate} from "react-router-dom";
 
@@ -65,63 +66,80 @@ export const Profile = () => {
         <Box>
             <Heading>Profile</Heading>
 
-            <Card
-                direction={{ base: 'column', sm: 'row' }}
-                overflow='hidden'
-                variant='outline'
-            >
-                <Image
-                    objectFit='cover'
-                    maxW={{ base: '100%', sm: '200px' }}
-                    src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
-                    alt='Caffe Latte'
-                />
+            <SimpleGrid columns={2} spacing={10}>
+                <Box>
+                    <Card
+                        direction={{ base: 'column', sm: 'row' }}
+                        overflow='hidden'
+                        variant='outline'
+                    >
+                        <Image
+                            objectFit='cover'
+                            maxW={{ base: '100%', sm: '200px' }}
+                            src='https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
+                            alt='Caffe Latte'
+                            borderRadius='lg'
+                        />
 
-                <Stack>
-                    <CardBody>
-                        <Heading size='md'>Welcome {auth.userAuth.user}</Heading>
+                        <Stack>
+                            <CardBody>
+                                <Heading size='md'>Welcome {auth.userAuth}</Heading>
 
-                        <Text py='2'>
-                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
-                            coffee of a lot of kind of coffees.
-                        </Text>
+                                <Text py='2'>
+                                    Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
+                                    coffee of a lot of kind of coffees.
+                                </Text>
 
- <Text py='2'>
-                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
-                            coffee of a lot of kind of coffees.
-                        </Text>
+                            </CardBody>
 
- <Text py='2'>
-                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
-                            coffee of a lot of kind of coffees.
-                        </Text>
+                            <CardFooter>
+                                <ButtonGroup spacing='5'>
+                                    <Button
+                                        type='submit'
+                                        colorScheme='red'
+                                        style={{backgroundColor: 'darkred'}}
+                                        onClick={onOpen}>
+                                        Edit
+                                    </Button>
+                                    <Button
+                                        type='submit'
+                                        colorScheme='red'
+                                        style={{backgroundColor: 'darkred'}}
+                                    >
+                                        Message
+                                    </Button>
+                                </ButtonGroup>
+                            </CardFooter>
+                        </Stack>
+                    </Card>
+                </Box>
+                <Box height='100px' borderRadius='lg'>
+                    <List spacing={3}>
+                        <ListItem>
+                            <ListIcon as={BsFillTelephoneFill} color='green.500' />
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={BsFillTelephoneFill} color='green.500' />
+                            Assumenda, quia temporibus eveniet a libero incidunt suscipit
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={BsFillTelephoneFill} color='green.500' />
+                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                        </ListItem>
+                        {/* You can also use custom icons from react-icons */}
+                        <ListItem>
+                            <ListIcon as={BsFillTelephoneFill} color='green.500' />
+                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                        </ListItem>
+                    </List>
+                </Box>
+                <Box height='80px'></Box>
+                <Box height='80px' borderRadius='lg'>
+                    testando
 
- <Text py='2'>
-                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
-                            coffee of a lot of kind of coffees.
-                        </Text>
-
- <Text py='2'>
-                            Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of
-                            coffee of a lot of kind of coffees.
-                        </Text>
-
-
-
-                    </CardBody>
-
-                    <CardFooter>
-                        <Button
-                            mt={4}
-                            type='submit'
-                            colorScheme='red'
-                            style={{backgroundColor: 'darkred'}}
-                            onClick={onOpen}>
-                            Edit / Save new profile
-                        </Button>
-                    </CardFooter>
-                </Stack>
-            </Card>
+                </Box>
+            </SimpleGrid>
 
             <Modal
                 isOpen={isOpen}
@@ -228,21 +246,23 @@ export const Profile = () => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button
-                            onClick={()=> handleSubmit()}
-                            mt={4}
-                            type='submit'
-                            colorScheme='red'
-                            style={{backgroundColor: 'darkred'}}
-                        >
-                            Submit
-                        </Button>
-                        <Button
-                            mt={4}
-                            type='submit'
-                            onClick={onClose}>
-                            Cancel
-                        </Button>
+                        <ButtonGroup spacing='2'>
+                            <Button
+                                onClick={()=> handleSubmit()}
+                                mt={4}
+                                type='submit'
+                                colorScheme='red'
+                                style={{backgroundColor: 'darkred'}}
+                            >
+                                Submit
+                            </Button>
+                            <Button
+                                mt={4}
+                                type='submit'
+                                onClick={onClose}>
+                                Cancel
+                            </Button>
+                        </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

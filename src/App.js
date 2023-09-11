@@ -42,6 +42,8 @@ function App() {
                                 <Route path="/home" element={<Home/>}/>
                                 <Route path="/dashboard" element={<Home/>}/>
                                 <Route path="/products" element={<Products/>}/>
+
+                                {/*REQUEST AUTHENTICATION TO ACCESS PROFILE*/}
                                 <Route path="/profile" element={
                                     <RequireAuth>
                                         <Profile/>

@@ -12,7 +12,7 @@ const Sidebar = ({ active }) => {
     }
 
     const auth = useAuth();
-    console.log(auth.userAuth)
+    console.log(' == AUTH ==', auth.userAuth)
 
     return (
         <Container sidebar={active}>
@@ -30,7 +30,7 @@ const Sidebar = ({ active }) => {
                 <Link to="profile">
                     <SidebarItem Icon={FaAddressCard} Text="Profile" />
                 </Link>
-                {!!auth.userAuth &&
+                {!auth.userAuth &&
                     <Link to="login">
                         <SidebarItem Icon={FaUserAlt} Text="Login" />
                     </Link>
