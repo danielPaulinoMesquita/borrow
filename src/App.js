@@ -10,10 +10,17 @@ import {Profile} from "./pages/Profile";
 import Login from "./pages/Login";
 import {AuthProvider} from "./contexts/AuthProvider";
 import {RequireAuth} from "./contexts/RequireAuth";
+import RequireAuthSecondApproach from "./contexts/RequireAuthSecondApproach";
 
 function NotFound (){
     return (
         <h1>NÃO ENCONTRADO TELA VAI SER CUSTOMIZADA.</h1>
+    )
+}
+
+function PageTest (){
+    return (
+        <h1>Only access for Customers</h1>
     )
 }
 
@@ -44,11 +51,19 @@ function App() {
                                 <Route path="/products" element={<Products/>}/>
 
                                 {/*REQUEST AUTHENTICATION TO ACCESS PROFILE*/}
+
+                                {/*THIS IS THE ONE OF APPROACH THAT VERIFY IF AUTH AND EXISTS ROLE (RequireAuthSecondApproach)*/}
+                                <Route element={<RequireAuthSecondApproach allowedRoles={['CUSTOMER']} />}>
+                                    <Route path='/test' element={<PageTest/>}/>
+                                </Route>
+
+                                {/*THIS IS THE ONE OF APPROACH THAT VERIFY IF AUTH AND EXISTS ROLE (RequireAuth)*/}
                                 <Route path="/profile" element={
-                                    <RequireAuth>
+                                    <RequireAuth allowedRoles={['COMPANY', 'CUSTOMER']}>
                                         <Profile/>
                                     </RequireAuth>
                                 }/>
+
                                 <Route path="*" element={<NotFound />} />
                             </Routes>
                         </Main>

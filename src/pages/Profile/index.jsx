@@ -83,7 +83,7 @@ export const Profile = () => {
 
                         <Stack>
                             <CardBody>
-                                <Heading size='md'>Welcome {auth.userAuth}</Heading>
+                                <Heading size='md'>Welcome {auth.userAuth.user}</Heading>
 
                                 <Text py='2'>
                                     Here will be a some description of company or user, this description obey all rules from platform. We sales a lot of

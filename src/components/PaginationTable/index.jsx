@@ -22,7 +22,7 @@ const PaginationTable = ({current, totalPage,  loading, objectsPerPage, paginate
                         <Tr>
                             {columns.map(colum => {
                                 return (
-                                    <Th>{colum}</Th>
+                                    <Th key={colum}>{colum}</Th>
                                 )
                             })}
                         </Tr>
@@ -30,7 +30,7 @@ const PaginationTable = ({current, totalPage,  loading, objectsPerPage, paginate
                     <Tbody>
                         {current ? current.map(obj=>{
                                 return(
-                                    <Tr>
+                                    <Tr key={obj.id}>
                                         <Td>{obj.id}</Td>
                                         <Td>{obj.nome}</Td>
                                         <Td>{obj.company}</Td>

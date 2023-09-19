@@ -4,7 +4,7 @@ The borrow system is a web application that his goal is get easier actions of bo
 The project started and the following images are the current appearance (not finished yet).
 
 ### DashBoard
-This page the user will see all companies and products that can be borrowed `This page will have a lot changes yet`
+This page the user will see all companies and products that can be borrowed `This page will still have a lot of changes`
 ![alt text](src/assets/screens/dashBoard.png)
 
 ### Products
@@ -12,11 +12,11 @@ This page will register products that in the future are can be to borrow
 ![alt text](src/assets/screens/products.png)
 
 ### Profile
-This page will serve to professionals register their information `This page will have a few modifications yet`.
+This page will serve to professionals register their information `This page will still have a few modifications`.
 ![alt text](src/assets/screens/profile.png)
 
 ### Login
-This page will serve to authenticate, `This page is building yet`.
+This page will serve to authenticate, `This page is still building`.
 ![alt text](src/assets/screens/login.png)
 
 

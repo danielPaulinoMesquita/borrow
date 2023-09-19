@@ -30,7 +30,10 @@ const Sidebar = ({ active }) => {
                 <Link to="profile">
                     <SidebarItem Icon={FaAddressCard} Text="Profile" />
                 </Link>
-                {!auth.userAuth &&
+                <Link to="test">
+                    <SidebarItem Icon={FaAddressCard} Text="Teste" />
+                </Link>
+                {!auth.userAuth.user &&
                     <Link to="login">
                         <SidebarItem Icon={FaUserAlt} Text="Login" />
                     </Link>

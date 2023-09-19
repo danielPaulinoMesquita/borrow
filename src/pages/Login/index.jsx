@@ -27,7 +27,9 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const redirectPath = location.state?.path || '/';
+    const redirectPath = location.state?.path
+        || location.state?.from?.pathname
+        || '/';
 
     const isErrorUser = userRef.current?.value === ''
     const isErrorPassword =  passwordRef.current?.value === ''
@@ -42,16 +44,15 @@ const Login = () => {
         console.log('RESULTADO DO AWAIT: ',time)
 
         // todo I will do a call to service and get the ROLES
-
-
         setLoader(false)
 
         setSubmit(!submit);
         console.log('REFS: ', {'user': userRef.current?.value, 'password': passwordRef.current?.value})
 
-        // Checking if it has some inout empty
+        // Checking if it has some input empty
         if (userRef.current?.value && passwordRef.current?.value){
-            auth.login(userRef.current?.value)
+            const payload = {'user': userRef.current?.value, 'password': userRef.current?.value};
+            auth.login(payload)
             navigate(redirectPath, {replace: true});
         }
     }
