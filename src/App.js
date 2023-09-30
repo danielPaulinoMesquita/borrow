@@ -24,6 +24,12 @@ function PageTest (){
     )
 }
 
+const ROLES = {
+    'USER': 'USER',
+    'CUSTOMER': 'CUSTOMER',
+    'COMPANY': 'COMPANY'
+}
+
 function App() {
     const [sideOpen, setSideOpen] = useState(false);
 
@@ -52,14 +58,14 @@ function App() {
 
                                 {/*REQUEST AUTHENTICATION TO ACCESS PROFILE*/}
 
-                                {/*THIS IS THE ONE OF APPROACH THAT VERIFY IF AUTH AND EXISTS ROLE (RequireAuthSecondApproach)*/}
-                                <Route element={<RequireAuthSecondApproach allowedRoles={['CUSTOMER']} />}>
+                                {/*THIS IS ONE OF APPROACH THAT VERIFY IF AUTH AND EXISTS ROLE (RequireAuthSecondApproach)*/}
+                                <Route element={<RequireAuthSecondApproach allowedRoles={[ROLES.CUSTOMER]} />}>
                                     <Route path='/test' element={<PageTest/>}/>
                                 </Route>
 
-                                {/*THIS IS THE ONE OF APPROACH THAT VERIFY IF AUTH AND EXISTS ROLE (RequireAuth)*/}
+                                {/*THIS IS ONE OF APPROACH THAT VERIFY IF AUTH AND EXISTS ROLE (RequireAuth)*/}
                                 <Route path="/profile" element={
-                                    <RequireAuth allowedRoles={['COMPANY', 'CUSTOMER']}>
+                                    <RequireAuth allowedRoles={[ROLES.COMPANY, ROLES.CUSTOMER]}>
                                         <Profile/>
                                     </RequireAuth>
                                 }/>

@@ -1,7 +1,11 @@
 import {useRef, useState} from "react";
 import {
     Box,
-    Button, CardBody, CardFooter, CardHeader,
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
     FormControl,
     FormErrorMessage,
     FormHelperText,
@@ -10,10 +14,11 @@ import {
     GridItem,
     Heading,
     Input,
-    Spinner, Text, Card
+    Spinner,
+    Text
 } from "@chakra-ui/react";
 import {useAuth} from "../../contexts/AuthProvider";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 const Login = () => {
@@ -34,7 +39,8 @@ const Login = () => {
     const isErrorUser = userRef.current?.value === ''
     const isErrorPassword =  passwordRef.current?.value === ''
 
-    const login = async () => {
+    const handleLogin = async (e) => {
+        e.preventDefault()
         setLoader(true);
 
         const time = await new Promise((resolve)=> {
@@ -43,7 +49,6 @@ const Login = () => {
 
         console.log('RESULTADO DO AWAIT: ',time)
 
-        // todo I will do a call to service and get the ROLES
         setLoader(false)
 
         setSubmit(!submit);
@@ -51,7 +56,7 @@ const Login = () => {
 
         // Checking if it has some input empty
         if (userRef.current?.value && passwordRef.current?.value){
-            const payload = {'user': userRef.current?.value, 'password': userRef.current?.value};
+            const payload = {'email': userRef.current?.value, 'password': passwordRef.current?.value};
             auth.login(payload)
             navigate(redirectPath, {replace: true});
         }
@@ -121,7 +126,7 @@ const Login = () => {
                     </FormControl>
                     <Box>
                         <Box p='2'>
-                            <Button width='80%' variant='solid' style={{backgroundColor: 'darkred', color: 'white'}} onClick={()=>login()}>
+                            <Button width='80%' variant='solid' style={{backgroundColor: 'darkred', color: 'white'}} onClick={(e)=>handleLogin(e)}>
                                 Login
                             </Button>
                         </Box>
