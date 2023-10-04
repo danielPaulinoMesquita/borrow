@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "http://localhost:8080/api/v1/auth",
+    baseURL: "http://localhost:8080/api/v1",
     withCredentials: true
 })
 
@@ -20,7 +20,6 @@ const errorHandler = (error) => {
 // Add an interceptor to attach the authentication token to each request
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('authToken'); // Retrieve the authentication token from wherever you store it
-    console.log('CONFIG: ', config)
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }

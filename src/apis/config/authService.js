@@ -4,22 +4,10 @@ import {api} from "./axiosConfigs";
 const API_BASE_URL = 'http://localhost:8080/api/v1/auth'; // Replace with your actual API URL
 
 const authService = {
-    login: async ({email, password}) => {
-        try {
-            const response = await axios.post(`${API_BASE_URL}/login`, {
-                email,
-                password,
-            });
-            return response.data;
-        } catch (error) {
-            throw new Error(error.response.data.message);
-        }
-    },
-
-    login2: async (user) => {
+    login: async (user) => {
         try {
             const response = await api.request({
-                url: `/authenticate`,
+                url: `/auth/authenticate`,
                 method: "POST",
                 data: user,
             })
@@ -30,13 +18,18 @@ const authService = {
         }
     },
 
-    register: async (username, password, email) => {
+    register: async (firstName, lastName, email, password) => {
         try {
-            const response = await axios.post(`${API_BASE_URL}/register`, {
-                username,
-                password,
-                email,
-            });
+            const response = await api.request({
+                url: '/auth/register',
+                method: "POST",
+                data: {
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                }
+            })
             return response.data;
         } catch (error) {
             throw new Error(error.response.data.message);
