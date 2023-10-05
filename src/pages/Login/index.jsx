@@ -83,6 +83,11 @@ const Login = () => {
         }
     }
 
+    const handleRegister = async (e) => {
+        e.preventDefault()
+        // todo here it will request register on AuthProvider
+    }
+
     return (
         <Box>
             <Grid templateColumns='repeat(2, 1fr)' gap={6}>
@@ -218,8 +223,8 @@ const Login = () => {
                                 <FormLabel htmlFor="segment">Segmento: </FormLabel>
 
                                 <Select placeholder='Select ...' ref={segmentRef}>
-                                    <option value='option1'>EMPRESA</option>
-                                    <option value='option2'>CLIENTE</option>
+                                    <option value='COMPANY'>EMPRESA</option>
+                                    <option value='CUSTOMER'>CLIENTE</option>
                                 </Select>
                             </FormControl>
                         </Box>

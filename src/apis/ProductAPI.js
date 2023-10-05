@@ -30,7 +30,7 @@ export const ProductAPI = {
 
         return response.data
     },
-    create: async function (product, cancel = false) {
+    create: async function (product) {
         await api.request({
             url: `/products`,
             method: "POST",

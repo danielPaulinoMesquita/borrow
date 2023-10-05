@@ -1,7 +1,4 @@
-import axios from 'axios';
 import {api} from "./axiosConfigs";
-
-const API_BASE_URL = 'http://localhost:8080/api/v1/auth'; // Replace with your actual API URL
 
 const authService = {
     login: async (user) => {
@@ -13,19 +10,18 @@ const authService = {
             })
             return response.data;
         } catch (error) {
-            console.log('error', error)
             throw new Error(error.response.data.message);
         }
     },
 
-    register: async (firstName, lastName, email, password) => {
+    register: async (name, documentNumber, email, password) => {
         try {
             const response = await api.request({
                 url: '/auth/register',
                 method: "POST",
                 data: {
-                    firstName,
-                    lastName,
+                    name,
+                    documentNumber,
                     email,
                     password
                 }
@@ -35,8 +31,6 @@ const authService = {
             throw new Error(error.response.data.message);
         }
     },
-
-    // Add more authentication-related functions as needed
 };
 
 export default authService;

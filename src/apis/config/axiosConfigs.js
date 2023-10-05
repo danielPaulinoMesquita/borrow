@@ -29,6 +29,5 @@ api.interceptors.request.use((config) => {
 // registering the custom error handler to the
 // "api" axios instance
 api.interceptors.response.use(undefined, (error) => {
-    console.log('ERROR: ', error)
     return errorHandler(error)
 })
