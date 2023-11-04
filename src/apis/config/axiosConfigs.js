@@ -14,6 +14,11 @@ const errorHandler = (error) => {
         console.error(error)
     }
 
+    // logging only errors that are not 403
+    if (statusCode && statusCode !== 403) {
+        console.error(error)
+    }
+
     return Promise.reject(error)
 }
 

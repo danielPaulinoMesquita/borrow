@@ -7,12 +7,15 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({children}) => {
     const [userAuth, setUserAuth] = useState({});
 
-    const login = async (user) => {
-        const userData = await authService.login(user);
-        //const customerInfo = await CustomerAPI.get(user.documentNumber);
+    const login = async (login) => {
+        console.log('--- chegou aqui --')
+        const userData = await authService.login(login);
+
+        console.log('login PEGO:', login)
+        const customerInfo = await CustomerAPI.get(login.user);
 
         // todo this mock 'userActive' it's only to test
-        const userActive = {...user, roles: ['CUSTOMER']}
+        const userActive = {...login, roles: ['CUSTOMER']}
         setUserAuth(userActive);
     }
 

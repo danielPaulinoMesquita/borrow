@@ -5,7 +5,7 @@ import {api} from "./config/axiosConfigs";
 export const CustomerAPI = {
     get: async function (documentNumber) {
         const response = await api.request({
-            url: `/customer/:documentNumber`,
+            url: `/customer/info/${documentNumber}`,
             method: "GET",
         })
 

@@ -8,6 +8,10 @@ const authService = {
                 method: "POST",
                 data: user,
             })
+
+            const token = response.data.token;
+            localStorage.setItem('authToken', token);
+
             return response.data;
         } catch (error) {
             throw new Error(error.response.data.message);

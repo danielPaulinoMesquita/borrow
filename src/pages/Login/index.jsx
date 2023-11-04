@@ -77,7 +77,7 @@ const Login = () => {
 
         // Checking if it has some input empty
         if (userRef.current?.value && passwordRef.current?.value){
-            const payload = {'email': userRef.current?.value, 'password': passwordRef.current?.value};
+            const payload = {'user': userRef.current?.value, 'password': passwordRef.current?.value};
             await auth.login(payload)
             navigate(redirectPath, {replace: true});
         }
