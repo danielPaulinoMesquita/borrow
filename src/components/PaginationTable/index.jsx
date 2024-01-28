@@ -32,9 +32,9 @@ const PaginationTable = ({current, totalPage,  loading, objectsPerPage, paginate
                                 return(
                                     <Tr key={obj.id}>
                                         <Td>{obj.id}</Td>
-                                        <Td>{obj.nome}</Td>
-                                        <Td>{obj.company}</Td>
-                                        <Td>{obj.valor}</Td>
+                                        <Td>{obj.type}</Td>
+                                        <Td>{obj.days}</Td>
+                                        <Td><img width={50} height={50} src={`data:image/jpeg;base64,${obj.imageData}`}/></Td>
                                     </Tr>
                                 )
                             }) :

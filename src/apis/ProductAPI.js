@@ -11,14 +11,16 @@ export const ProductAPI = {
 
         return response.data
     },
+
     getAll: async function (cancel = false) {
         const response = await api.request({
-            url: "/products/",
+            url: "/products/all",
             method: "GET",
         })
 
         return response.data
     },
+
     search: async function (name) {
         const response = await api.request({
             url: "/products/search",
@@ -30,6 +32,7 @@ export const ProductAPI = {
 
         return response.data
     },
+
     create: async function (product) {
         await api.request({
             url: `/products`,

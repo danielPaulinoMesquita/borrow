@@ -8,6 +8,7 @@ export const AuthProvider = ({children}) => {
     const [userAuth, setUserAuth] = useState({});
 
     const login = async (login) => {
+        // todo remember to take out a token from local storage to not conflict with the token that already exists
         console.log('--- chegou aqui --')
         const userData = await authService.login(login);
 

@@ -4,7 +4,7 @@ import Pagination from "../../components/PaginationCard/index";
 import PaginationTable from "../../components/PaginationTable";
 import Categories from '../../assets/mocks/categories.json';
 import Companies from '../../assets/mocks/companies.json';
-import Products from '../../assets/mocks/products.json';
+import {ProductAPI} from "../../apis/ProductAPI";
 
 export const Home = () => {
 
@@ -20,15 +20,22 @@ export const Home = () => {
     useEffect(() => {
         setLoading(true);
 
+
         // todo mock
         const categories = JSON.parse(JSON.stringify(Categories));
         const companies = JSON.parse(JSON.stringify(Companies));
-        const products = JSON.parse(JSON.stringify(Products));
+        // const products = JSON.parse(JSON.stringify(Products));
 
         setCategories(categories);
         setCompanies(companies);
-        setProducts(products);
-        setColumns(['id','nome','company','valor'])
+        ProductAPI.getAll().then(response => {
+            setProducts(response)
+        }).catch(error => {
+            console.log(error)
+        })
+
+      //  setProducts(products);
+        setColumns(['ID', 'TYPE', 'DAYS', 'IMAGE'])
 
         setLoading(false)
 
@@ -44,6 +51,7 @@ export const Home = () => {
     const indexOfLastTable = currentPageTable * objectsPerPage;
     const indexOfFirstTable= indexOfLastTable - objectsPerPage;
     const currentTable = products.slice(indexOfFirstTable, indexOfLastTable);
+
 
     // change page
     const paginate = (pageNumber) => {
